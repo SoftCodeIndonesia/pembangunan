@@ -5,9 +5,14 @@
 
         public function view($view, $data = [])
         {
-            require_once '../apps/views/templates/header.php';
-            require_once '../apps/views/' . $view . '.php';
-            require_once '../apps/views/templates/footer.php';
+            $folder = explode('/',$view);
+            if($folder[0] == 'login'){
+                require_once '../apps/views/' . $view . '.php';
+            }else{
+                require_once '../apps/views/templates/header.php';
+                require_once '../apps/views/' . $view . '.php';
+                require_once '../apps/views/templates/footer.php';
+            }
         }
 
 

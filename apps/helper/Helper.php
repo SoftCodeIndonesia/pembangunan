@@ -25,7 +25,7 @@
             
         }
 
-        public function session_destory($session = [])
+        public function session_destroy($session = [])
         {
             foreach ($session as $value) {
                 unset($_SESSION[$value]);

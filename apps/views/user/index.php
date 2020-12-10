@@ -3,7 +3,8 @@
         <a href="<?= BASE_URL ?>User/tambah" class="btn btn-sm btn-light btn-block">Tambah Data</a>
     </div>
 </div>
-<input type="hidden" name="flash" id="flash" value="<?= $_SESSION['flash'] ?>">
+<input type="hidden" name="flash" id="flash" value="<?= !empty($_SESSION['flash']) ? $_SESSION['flash'] : '' ?>">
+
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
@@ -21,10 +22,8 @@
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr id="data-column">
-
-                            </tr>
+                        <tbody id="data-column">
+                          
                         </tbody>
                     </table>
                 </div>
