@@ -57,9 +57,31 @@
             $this->view('user/tambah',$data);
         }
 
-        // public function storeCreated()
-        // {
-        //     $
-        // }
+        public function storeCreated()
+        {
+            $users = $this->helper->createId($this->model->getLastUser()['user_id']);
+            
+            $data['user_id'] = $users;
+            $data['rules_id'] = $_POST['rules_id'];
+            $data['name'] = $_POST['name'];
+            $data['password'] = md5('123');
+            $data['created_at'] = time();
+            $data['create_by'] = 'ID001';
+
+            if($this->model->insert($data) > 0){
+                $_SESSION['flash'] = 'berhasil ditambahkan!';
+
+                $this->redirect(BASE_URL. 'User');
+            }else{
+                $_SESSION['flash'] = 'berhasil ditambahkan!';
+
+                $this->redirect(BASE_URL. 'User');
+            }
+        }
+
+        public function destroy_session($session = [])
+        {
+            
+        }
     }
     

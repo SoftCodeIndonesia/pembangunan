@@ -31,4 +31,22 @@
                 unset($_SESSION[$value]);
             }
         }
+
+        public function createId($lastId)
+        {
+            $userId = 'ID';
+            $id = substr($lastId,2);
+
+            $id = (int)$id;
+
+            $uniqIdNumber = $id + 1;
+            if(strlen($uniqIdNumber) == 1){
+                $userId = $userId . '00' . $uniqIdNumber;
+            }else if(strlen($uniqIdNumber) == 2){
+                $userId = $userId . '0' . $uniqIdNumber;
+            }else{
+                $userId = $userId . $uniqIdNumber;
+            }
+            return $userId;
+        }
     }

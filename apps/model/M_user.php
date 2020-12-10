@@ -15,5 +15,31 @@
             $this->db->query($query);
             return $this->db->resultSet();
         }
+
+        public function getLastUser()
+        {
+            $query = 'SELECT * FROM users ORDER BY created_at DESC LIMIT 1';
+
+            $this->db->query($query);
+
+            return $this->db->single();
+        }
+
+
+        public function insert($data)
+        {
+            $query = 'INSERT INTO users VALUES (:user_id,:rules_id,:name,:password,:created_at,create_by)';
+
+            $this->db->query($query);
+
+            $this->db->bind('user_id',$data['user_id']);
+            $this->db->bind('rules_id',$data['rules_id']);
+            $this->db->bind('name',$data['name']);
+            $this->db->bind('password',$data['password']);
+            $this->db->bind('created_at',$data['created_at']);
+            $this->db->bind('create_by',$data['create_by']);
+
+            return $this->db->num_rows();
+        }
     }
     
