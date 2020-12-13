@@ -1,8 +1,11 @@
+<?php if(!empty($_SESSION['userdata'])) : ?>
 <div class="row mb-2">
     <div class="col-sm-2">
         <a href="<?= BASE_URL ?>User/tambah" class="btn btn-sm btn-light btn-block">Tambah Data</a>
     </div>
 </div>
+<?php endif; ?>
+
 <input type="hidden" name="flash" id="flash" value="<?= !empty($_SESSION['flash']) ? $_SESSION['flash'] : '' ?>">
 
 <div class="row">

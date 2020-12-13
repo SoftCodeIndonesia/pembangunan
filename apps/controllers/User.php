@@ -12,6 +12,7 @@
         
         public function index()
         {
+            $this->helper->session_destroy(['form_error','set_value']);
             $data['title'] = 'Users';
             $data['js'] = [
                 'user/index.js'
@@ -30,13 +31,18 @@
 
                 $ubah = '<a href="'.BASE_URL.'User/ubah/'.$value['user_id'].'" class="btn btn-sm btn-light btn-block">ubah</a>';
                 $hapus = '<a href="'.BASE_URL.'User/hapus/'.$value['user_id'].'" data-id="'.$value['user_id'].'" class="btn-delete btn btn-sm btn-light btn-block">hapus</a>';
+                $login = '<a href="'.BASE_URL.'Login" class="btn btn-sm btn-light btn-block">Login</a>';
                 $data[] = '<tr>';
                 $data[] = "<th>". $no++ ."</th>";
                 $data[] = "<th>".$value['name']."</th>";
                 $data[] = "<th>".$value['rule']."</th>";
                 $data[] = "<th>".$value['created_by']."</th>";
                 $data[] = "<th>". date('d M Y', $value['created_at'])."</th>";
-                $data[] = "<th>". $ubah . $hapus ."</th>";
+                if(!empty($_SESSION['userdata'])){
+                    $data[] = "<th>". $ubah . $hapus ."</th>";
+                }else{
+                    $data[] = "<th>".$login."</th>";
+                }
                 $data[] = "</tr>";
                 $table[] = $data;
             }
