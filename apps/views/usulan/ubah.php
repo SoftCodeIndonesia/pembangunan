@@ -2,15 +2,17 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <div class="card-title">Buat usulan</div>
+                <div class="card-title">Ubah usulan</div>
                 <hr>
-                <form method="POST" action="<?= BASE_URL ?>Usulan/storeCreated">
+                <form method="POST" action="<?= BASE_URL ?>Usulan/storeUbah">
+                    <input type="hidden" name="usulan_id" value="<?= $data['usulan']['usulan_id'] ?>">
+                    <input type="hidden" name="is_read" value="<?= $data['usulan']['is_read'] ?>">
                     <div class="form-group">
                         <label for="title">Usulan Masyarakat</label>
                         <!-- <input type="text" class="form-control" value="" name="name" id="name" placeholder="Masukan nama"
                             autocomplete="off" required> -->
                         <textarea class="form-control" placeholder="Ketik usulanmu disini?" name="title" id="title"
-                            cols="30" rows="10"></textarea>
+                            cols="30" rows="10"><?= $data['usulan']['title'] ?></textarea>
                     </div>
                     <div class="form-group">
                         <label for="created_at">Dibuat oleh</label>

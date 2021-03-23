@@ -49,14 +49,15 @@
           src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
       <script type="text/javascript">
 var base_url = "<?= BASE_URL; ?>";
+var site_url = "<?= SITE_URL; ?>";
       </script>
       <?php
-    if(!empty($data['js'])){
-      foreach ($data['js'] as $key => $value) {
-        echo '<script src="'. BASE_URL . 'assets/js/' .$value.'"></script>';
+      if (!empty($data['js'])) {
+        foreach ($data['js'] as $key => $value) {
+          echo '<script src="' . BASE_URL . 'assets/js/' . $value . '"></script>';
+        }
       }
-    }
-  ?>
+      ?>
 
       </body>
 
