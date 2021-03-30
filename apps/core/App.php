@@ -11,11 +11,13 @@
         {
             $url = $this->parseUrl();
             
-            if(file_exists('../apps/controllers/' . ucfirst($url[0]) . '.php')){
+            if($url){
+                if(file_exists('../apps/controllers/' . ucfirst($url[0]) . '.php')){
 
-                $this->controller = ucfirst($url[0]);
-                unset($url[0]);
-
+                    $this->controller = ucfirst($url[0]);
+                    unset($url[0]);
+    
+                }
             }
 
             require_once '../apps/controllers/' . $this->controller . '.php';

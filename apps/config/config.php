@@ -1,7 +1,11 @@
 <?php
 
-define('BASE_URL', 'http://localhost:8888/pembangunan/public/');
-define('SITE_URL', 'http://localhost:8888/pembangunan/');
+$base_url = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http");
+$base_url .= "://" . $_SERVER['HTTP_HOST'];
+$base_url .= str_replace(basename($_SERVER['SCRIPT_NAME']), "", $_SERVER['SCRIPT_NAME']);
+
+define('BASE_URL', $base_url);
+define('SITE_URL', 'http://localhost/pembangunan/');
 
 define('DB_HOST', '203.161.184.104');
 define('DB_USER', 'penduduk_usulan_pembangunan');

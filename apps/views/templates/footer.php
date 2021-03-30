@@ -28,6 +28,7 @@
       </div>
       <!--End wrapper-->
 
+      
       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
       <!-- Bootstrap core JavaScript-->
       <script src="<?= BASE_URL ?>assets/vendor/js/jquery.min.js"></script>
@@ -47,6 +48,7 @@
       <!-- datatables -->
       <script type="text/javascript" charset="utf8"
           src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+          
       <script type="text/javascript">
 var base_url = "<?= BASE_URL; ?>";
 var site_url = "<?= SITE_URL; ?>";
@@ -59,6 +61,10 @@ var site_url = "<?= SITE_URL; ?>";
       }
       ?>
 
+<script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwVoaqyCzvPJKC9Kz80HAHaNn0wbBHZDU&callback=initMap&libraries=&v=weekly"
+        defer
+        ></script>
       </body>
 
       </html>

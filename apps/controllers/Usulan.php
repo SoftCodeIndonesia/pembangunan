@@ -29,7 +29,9 @@ class Usulan extends Controller
     public function tambah()
     {
         $data['title'] = 'Buat Usulan';
-
+        $data['js'] = [
+            'usulan/tambah.js'
+        ];
         $this->view('usulan/tambah', $data);
     }
 
