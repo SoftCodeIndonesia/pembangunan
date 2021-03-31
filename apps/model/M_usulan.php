@@ -10,9 +10,11 @@ class M_usulan
 
     public function insert($data)
     {
-        $query = "INSERT INTO usulan VALUES (null,:title,:created_at,:created_by,:is_read)";
+        $query = "INSERT INTO usulan VALUES (null,:title,:lat,:lang,:created_at,:created_by,:is_read)";
         $this->db->query($query);
         $this->db->bind('title', $data['title']);
+        $this->db->bind('lat', $data['lat']);
+        $this->db->bind('lang', $data['lng']);
         $this->db->bind('created_at', $data['created_at']);
         $this->db->bind('created_by', $data['created_by']);
         $this->db->bind('is_read', $data['is_read']);
@@ -51,11 +53,13 @@ class M_usulan
 
     public function ubah($data, $idUsulan)
     {
-        $query = "UPDATE usulan SET title = :title,created_at = :created_at, created_by = :created_by, is_read = :is_read WHERE usulan_id = :usulan_id";
+        $query = "UPDATE usulan SET title = :title, lat = :lat, lang = :lang,created_at = :created_at, created_by = :created_by, is_read = :is_read WHERE usulan_id = :usulan_id";
 
         $this->db->query($query);
 
         $this->db->bind('title', $data['title']);
+        $this->db->bind('lat', $data['lat']);
+        $this->db->bind('lang', $data['lng']);
         $this->db->bind('created_at', $data['created_at']);
         $this->db->bind('created_by', $data['created_by']);
         $this->db->bind('is_read', $data['is_read']);

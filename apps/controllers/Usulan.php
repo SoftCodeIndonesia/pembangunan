@@ -38,6 +38,8 @@ class Usulan extends Controller
     public function storeCreated()
     {
         $data['title'] =  $_POST['title'];
+        $data['lat'] = $_POST['lat'];
+        $data['lng'] = $_POST['lng'];
         $data['created_at'] = time();
         $data['created_by'] = $_SESSION['userdata']['user_id'];
         $data['is_read'] = 0;
@@ -60,6 +62,9 @@ class Usulan extends Controller
     public function ubah($idUsulan)
     {
         $data['title'] = "ubah usulan";
+        $data['js'] = [
+            'usulan/tambah.js'
+        ];
         $data['usulan'] = $this->model->getById($idUsulan);
         $this->view('usulan/ubah', $data);
     }
@@ -67,6 +72,8 @@ class Usulan extends Controller
     public function storeUbah()
     {
         $data['title'] =  $_POST['title'];
+        $data['lat'] = $_POST['lat'];
+        $data['lng'] = $_POST['lng'];
         $data['created_at'] = time();
         $data['created_by'] = $_SESSION['userdata']['user_id'];
         $data['is_read'] = $_POST['is_read'];

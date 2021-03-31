@@ -1,34 +1,59 @@
-<!--Start topbar header-->
-<header class="topbar-nav">
- <nav class="navbar navbar-expand fixed-top">
-  <ul class="navbar-nav mr-auto align-items-center">
-    <li class="nav-item">
-      <a class="nav-link toggle-menu" href="javascript:void();">
-       <i class="icon-menu menu-icon"></i>
-     </a>
-    </li>
-  </ul>
-     
-  <ul class="navbar-nav align-items-center right-nav-link">
-    <li class="nav-item">
-      <a class="nav-link <?= !empty($_SESSION['userdata']) ? 'dropdown-toggle dropdown-toggle-nocaret' : '' ?>" data-toggle="<?= !empty($_SESSION['userdata']) ? 'dropdown' : '' ?>" href="<?= !empty($_SESSION['userdata']) ? '#' : BASE_URL . 'Login' ?>">
-        <span class="user-profile"><h6 class="mt-2 user-title"><?= !empty($_SESSION['userdata']) ? $_SESSION['userdata']['name'] : 'Login' ?></h6></span>
-      </a>
-      <ul class="dropdown-menu dropdown-menu-right">
-       <li class="dropdown-item user-details">
-        <a href="javaScript:void();">
-           <div class="media">
-            <div class="media-body">
-            <h6 class="mt-2 user-title"><?= !empty($_SESSION['userdata']) ? $_SESSION['userdata']['name'] : '' ?></h6>
-            <p class="user-subtitle"><?= !empty($_SESSION['userdata']) ? $_SESSION['userdata']['rule'] : '' ?></p>
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+    <!-- Sidebar Toggle (Topbar) -->
+    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+        <i class="fa fa-bars"></i>
+    </button>
+    <!-- Topbar Navbar -->
+    <ul class="navbar-nav ml-auto">
+
+        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+        <li class="nav-item dropdown no-arrow d-sm-none">
+            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+            </a>
+            <!-- Dropdown - Messages -->
+            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                            aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
-           </div>
-          </a>
         </li>
-        <li class="dropdown-item"><a href="<?= BASE_URL ?>login/logout" class="nav-link"><i class="icon-power mr-2"></i> Logout</li></a>
-      </ul>
-    </li>
-  </ul>
+
+
+        <div class="topbar-divider d-none d-sm-block"></div>
+
+        <!-- Nav Item - User Information -->
+        <li class="nav-item dropdown no-arrow">
+            <?php if (!empty($_SESSION['userdata'])) : ?>
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $_SESSION['userdata']['name'] ?></span>
+            </a>
+            <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+                </a>
+            </div>
+            <?php else : ?>
+            <a class="nav-link dropdown-toggle" href="<?= BASE_URL ?>/Login">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Login</span>
+            </a>
+            <?php endif; ?>
+        </li>
+
+    </ul>
+
 </nav>
-</header>
-<!--End topbar header-->

@@ -1,19 +1,4 @@
 
-var table = dataTablesCreated();
-
-function dataTablesCreated() {
-    $('#data-column').html('');
-    $.ajax({
-        type: "POST",
-        url: base_url + "/User/allUsers",
-        dataType: "json",
-        success: function (response) {
-            $.each(response.data, function (index, value) {
-                $('#data-column').append(value);
-            });
-        }
-    });
-}
 flash();
 function flash() {
     var flash = $('#flash').val();
@@ -33,10 +18,9 @@ function flash() {
 
     }
 }
-
-$(document).on('click', '.btn-delete', function (e) {
-
+$('.btn-delete').click(function (e) { 
     e.preventDefault();
+    console.log("delete");
     swal({
         title: "Yakin ingin hapus data?",
         text: "Data akan dihapus secara permanen!",
@@ -65,6 +49,8 @@ $(document).on('click', '.btn-delete', function (e) {
                         } else {
                             $('#flash').val('gagal dihapus');
                         }
+
+                        window.location.replace(base_url + 'User');
 
                         dataTablesCreated();
                     }

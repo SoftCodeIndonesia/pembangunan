@@ -21,4 +21,10 @@ class Report extends Controller
         ];
         $this->view('files/tambah', $data);
     }
+
+    public function storeCreated()
+    {
+        var_dump($_POST);
+        var_dump($_FILES);
+    }
 }
