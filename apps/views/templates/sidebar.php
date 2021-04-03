@@ -95,7 +95,7 @@
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="<?= BASE_URL ?>/Report">
+        <a class="nav-link" href="<?= BASE_URL ?>Report">
             <i class="fas fa-fw fa-file"></i>
             <span>File</span></a>
     </li>

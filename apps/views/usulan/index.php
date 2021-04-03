@@ -71,9 +71,11 @@
                             aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item"
                                 href="<?= BASE_URL ?>usulan/detail/<?= $value['usulan_id'] ?>">Lihat detail</a>
+                            <?php if ($value['user_id'] == $_SESSION['userdata']['user_id']) : ?>
                             <a class="dropdown-item"
                                 href="<?= BASE_URL ?>Usulan/ubah/<?= $value['usulan_id'] ?>">Ubah</a>
                             <div class="dropdown-divider"></div>
+                            <?php endif; ?>
                             <?php if ($value['user_id'] == $_SESSION['userdata']['user_id']) : ?>
                             <a class="dropdown-item" data-id="<?= $value['usulan_id'] ?>" id="btn-delete"
                                 href="#">Delete</a>
