@@ -11,7 +11,8 @@
                             <h6 class="card-subtitle mb-2 text-muted"><?= $data['usulan']['rule'] ?></h6>
                         </div>
                         <div class="col-sm-6 text-right">
-                            <a href="" class="btn btn-sm btn-secondary"><i
+                            <a href="<?= BASE_URL ?>lokasi/location/<?= $data['usulan']['lat'] ?>/<?= $data['usulan']['lang'] ?>/<?= $data['usulan']['usulan_id'] ?>"
+                                class="btn btn-sm btn-secondary"><i
                                     class="fa fa-fw fa-map-marker-alt text-danger"></i>Lihat
                                 lokasi</a>
                         </div>

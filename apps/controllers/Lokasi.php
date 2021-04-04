@@ -1,6 +1,6 @@
 <?php
 
-class Loc extends Controller
+class Lokasi extends Controller
 {
     protected $model;
 

@@ -8,6 +8,7 @@
     </div>
     <?php endif; ?>
     <input type="hidden" name="flash" id="flash" value="<?= !empty($_SESSION['flash']) ? $_SESSION['flash'] : '' ?>">
+    <input type="hidden" name="session" value="<?= $_SESSION['userdata']['user_id'] ?>">
     <div class="row" id="content-file">
 
     </div>

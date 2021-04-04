@@ -1,6 +1,6 @@
 flash();
 createDataIndex();
-
+var session = $("input[name='session']").val();
 function createDataIndex() { 
     var content = '';
     
@@ -17,17 +17,20 @@ function createDataIndex() {
                 content += '<div class="card-body">';
                 content += '<i class="fa fa-fw fa-folder"></i><a href="'+base_url+'Report/detail/'+value.attachment_id+'">'+value.title+'</a>';
                 content += '</div>';
-                content += '<div class="card-footer">';
-                content += '<div class="row">';
-                content += '<div class="col-sm-6">';
-                content += '<a href="'+base_url+'/Report/ubah/'+value.attachment_id+'" class="col-12 btn btn-sm btn-warning">Edit</a>';
-                content += '</div>';
-                content += '<div class="col-sm-6">';
-                content += '<a href="" data-id="'+value.attachment_id+'" class="col-12 btn btn-sm btn-danger" id="btn-delete">Hapus</a>';
+                if(value.created_by == session) {
+                    content += '<div class="card-footer">';
+                    content += '<div class="row">';
+                    content += '<div class="col-sm-6">';
+                    content += '<a href="'+base_url+'/Report/ubah/'+value.attachment_id+'" class="col-12 btn btn-sm btn-warning">Edit</a>';
+                    content += '</div>';
+                    content += '<div class="col-sm-6">';
+                    content += '<a href="" data-id="'+value.attachment_id+'" class="col-12 btn btn-sm btn-danger" id="btn-delete">Hapus</a>';
+                    
+                    content += '</div>';
+                    content += '</div>';
+                    content += '</div>';
+                }
                 
-                content += '</div>';
-                content += '</div>';
-                content += '</div>';
                 content += '</div>';
                 content += '</div>';
                 $('#content-file').html('');
