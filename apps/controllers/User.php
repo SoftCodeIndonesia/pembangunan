@@ -125,11 +125,23 @@ class User extends Controller
 
         $rules = $this->model->userByRulesId($data['rules_id']);
         if ($rules) {
-            $_SESSION['form_error'] = [
-                'rules' => 'Data sudah ada!'
-            ];
-            $_SESSION['set_value'] = $data;
-            $this->redirect(BASE_URL . 'user/tambah');
+            if ($rules['user_id'] != $user_id) {
+                $_SESSION['form_error'] = [
+                    'rules' => 'Data sudah ada!'
+                ];
+                $_SESSION['set_value'] = $data;
+                $this->redirect(BASE_URL . 'user/tambah');
+            } else {
+                if ($this->model->update($user_id, $data) > 0) {
+                    $_SESSION['flash'] = 'berhasil diubah!';
+                    $this->helper->session_destroy(['form_error', 'set_value']);
+                    $this->redirect(BASE_URL . 'User');
+                } else {
+                    $_SESSION['flash'] = 'gagal diubah!';
+                    $this->helper->session_destroy(['form_error', 'set_value']);
+                    $this->redirect(BASE_URL . 'User');
+                }
+            }
         } else {
             if ($this->model->update($user_id, $data) > 0) {
                 $_SESSION['flash'] = 'berhasil diubah!';
