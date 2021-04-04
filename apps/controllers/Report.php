@@ -48,18 +48,20 @@ class Report extends Controller
 
         $attachment_id = $this->model->insertAttachment($data);
 
-        foreach ($_FILES as $file) {
-            $extension = end(explode('.', $file['name']));
-            $fileName = time() . '.' . $extension;
+        if ($_FILES) {
+            foreach ($_FILES as $file) {
+                $extension = end(explode('.', $file['name']));
+                $fileName = time() . '.' . $extension;
 
-            move_uploaded_file($file['tmp_name'], $source . $fileName);
+                move_uploaded_file($file['tmp_name'], $source . $fileName);
 
-            $files['attachment_id'] = $attachment_id;
-            $files['name'] = $fileName;
-            $files['source'] = $source . $fileName;
+                $files['attachment_id'] = $attachment_id;
+                $files['name'] = $fileName;
+                $files['source'] = $source . $fileName;
 
 
-            $this->model->insert_file($files);
+                $this->model->insert_file($files);
+            }
         }
 
         $_SESSION['flash'] = 'berhasil ditambahkan!';
@@ -86,8 +88,8 @@ class Report extends Controller
 
         $data['title'] = 'Ubah report';
         $data['js'] = [
+            'file/edit.js',
             'file/upload.js',
-            'file/edit.js'
         ];
         $this->view('files/ubah', $data);
     }
@@ -96,7 +98,64 @@ class Report extends Controller
     {
         $attachment = $this->model->getById($id);
         $file = $this->model->getFileByAttachment($id);
+        $data = [
+            $attachment,
+            $file
+        ];
+        echo json_encode($data);
+    }
 
-        echo json_encode($attachment, $file);
+    public function deleteFile()
+    {
+        $file_id = $_POST['file_id'];
+
+        echo json_encode($this->model->deleteFileById($file_id));
+    }
+
+    public function storeEdit($attachment_id)
+    {
+        $data['title'] = htmlspecialchars(($_POST['title']));
+        $data['_description'] = $_POST['description'];
+        $data['created_by'] = $_SESSION['userdata']['user_id'];
+        $data['created_at'] = time();
+
+        $source = 'assets/attachment/';
+
+        $attachment_id = $attachment_id;
+
+        if ($this->model->edit($data, $attachment_id) > 0) {
+            if ($_FILES) {
+                foreach ($_FILES as $file) {
+                    $extension = end(explode('.', $file['name']));
+                    $fileName = time() . '.' . $extension;
+
+                    move_uploaded_file($file['tmp_name'], $source . $fileName);
+
+                    $files['attachment_id'] = $attachment_id;
+                    $files['name'] = $fileName;
+                    $files['source'] = $source . $fileName;
+
+
+                    $this->model->insert_file($files);
+                }
+            }
+
+            $_SESSION['flash'] = 'berhasil ditambahkan!';
+        } else {
+            $_SESSION['flash'] = 'berhasil ditambahkan!';
+        }
+
+
+        $this->helper->session_destroy(['form_error', 'set_value']);
+        $this->redirect(BASE_URL . 'Report');
+    }
+
+
+    public function detail($attachment_id)
+    {
+        $data['title'] = 'Detail Laporan';
+        $data['attachment'] = $this->model->getById($attachment_id);
+        $data['file'] = $this->model->getFileByAttachment($attachment_id);
+        $this->view('files/detail', $data);
     }
 }

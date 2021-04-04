@@ -57,4 +57,11 @@ class Helper
 
         return $url[$index];
     }
+
+    public function checkTypeFile($fileName)
+    {
+        $extension = end(explode('.', $fileName));
+
+        return $extension;
+    }
 }

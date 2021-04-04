@@ -89,9 +89,9 @@
                 </div>
                 <?php if ($value['lat'] && $value['lang']) : ?>
                 <div class="card-footer">
-                    <button class="btn btn-sm btn-secondary"> <i
-                            class="fa fa-fw fa-map-marker-alt text-danger"></i>Lihat
-                        lokasi</button>
+                    <a href="<?= BASE_URL ?>Loc/location/<?= $value['lat'] ?>/<?= $value['lang'] ?>/<?= $value['usulan_id'] ?>"
+                        class="btn btn-sm btn-secondary"> <i class="fa fa-fw fa-map-marker-alt text-danger"></i>Lihat
+                        lokasi</a>
 
                 </div>
                 <?php endif; ?>

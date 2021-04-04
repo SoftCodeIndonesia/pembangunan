@@ -1,24 +1,26 @@
 <div class="container-fluid">
     <div class="row mt-3">
+        <input type="hidden" name="flash" id="flash"
+            value="<?= !empty($_SESSION['flash']) ? $_SESSION['flash'] : '' ?>">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="card-title">Upload File</div>
+                    <div class="card-title">Edit File</div>
                     <hr>
-                    <form method="POST" action="<?= BASE_URL ?>Report/storeCreated" enctype="multipart/form-data">
+                    <form method="POST" action="<?= BASE_URL ?>Report/storeEdit/<?= $this->helper->uriSegment(0) ?>"
+                        enctype="multipart/form-data">
                         <input type="hidden" name="id" id="id_attachment" value="<?= $this->helper->uriSegment(0) ?>">
                         <div class="form-group">
                             <label for="title">Title</label>
-                            <input type="text" value="<?= $data['attachment']['title'] ?>" class="form-control"
-                                placeholder="Masukan nama" name="title" id="title" autocomplete="off">
+                            <input type="text" class="form-control" placeholder="Masukan nama" name="title" id="title"
+                                autocomplete="off">
                         </div>
                         <div class="form-group">
                             <label for="Description">Description</label>
                             <!-- <input type="text" class="form-control" value="" name="name" id="name" placeholder="Masukan nama"
                             autocomplete="off" required> -->
                             <textarea class="form-control" placeholder="Masukan description" name="description"
-                                id="Description" cols="30"
-                                rows="10"><?= $data['attachment']['description'] ?></textarea>
+                                id="description" cols="30" rows="10"></textarea>
                         </div>
                         <!-- <div class="form-group">
                             <label for="file">Upload file</label>
@@ -32,29 +34,7 @@
                             kolom untuk
                             upload file</button>
                         <div class="row mt-3 field-upload">
-                            <?php $i = 0; ?>
-                            <?php foreach ($data['file'] as $data) : ?>
-                            <div class="form-group col-sm-3">
-                                <label for="upload<?= $i ?>">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <img src="<?= BASE_URL . $data['source'] ?>" width="100%"
-                                                class="img-thumbnail" alt="...">
 
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <p class="text-center">Klick to upload</p>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <button class="btn btn-danger btn-sm col-sm-12"><i
-                                                    class="fa fa-fw fa-trash"></i>
-                                                Hapus</button>
-                                        </div>
-                                    </div>
-                                </label>
-                                <input type="file" name="file" id="upload<?= $i ?>" style="display: none;">
-                            </div>
-                            <?php endforeach; ?>
                         </div>
                         <div class="form-group mt-3">
                             <label for="created_at">Dibuat oleh</label>

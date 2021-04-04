@@ -15,7 +15,7 @@ function createDataIndex() {
                 content += '<div class="col-sm-3">';
                 content += '<div class="card">';
                 content += '<div class="card-body">';
-                content += '<i class="fa fa-fw fa-folder"></i>'+value.title+'';
+                content += '<i class="fa fa-fw fa-folder"></i><a href="'+base_url+'Report/detail/'+value.attachment_id+'">'+value.title+'</a>';
                 content += '</div>';
                 content += '<div class="card-footer">';
                 content += '<div class="row">';
